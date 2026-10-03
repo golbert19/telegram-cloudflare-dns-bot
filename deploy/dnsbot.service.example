@@ -1,1 +1,20 @@
+[Unit]
+Description=Telegram Cloudflare DNS Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dnsbot
+Group=dnsbot
+WorkingDirectory=/opt/telegram-cloudflare-dns-bot
+EnvironmentFile=/opt/telegram-cloudflare-dns-bot/.env
+ExecStart=/opt/telegram-cloudflare-dns-bot/venv/bin/python /opt/telegram-cloudflare-dns-bot/bot.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
 
